@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: a-sync-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    autoDeploy: false # deploys are triggered explicitly by the CI deploy job on tag push
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: a-sync-db
+          property: connectionString
+      - key: REDIS_URL
+        sync: false # set manually once you provision Redis (Render Key Value / external)
+      - key: API_KEY_HASH_SECRET
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+
+databases:
+  - name: a-sync-db
+    plan: free
+    databaseName: async
+    user: async

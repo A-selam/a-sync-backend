@@ -1,0 +1,38 @@
+version: "2"
+linters:
+  enable:
+    - bodyclose
+    - revive
+    - sqlclosecheck
+    - unconvert
+  settings:
+    revive:
+      rules:
+        - name: exported
+          disabled: false
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - tests
+      - third_party$
+      - builtin$
+      - examples$
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - tests
+      - third_party$
+      - builtin$
+      - examples$

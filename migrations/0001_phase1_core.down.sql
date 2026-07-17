@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS jobs;
+DROP TYPE IF EXISTS job_status;
+DROP TABLE IF EXISTS workers;
+DROP TABLE IF EXISTS queues;
+DROP TABLE IF EXISTS api_keys;
+DROP TYPE IF EXISTS api_key_type;
+DROP TABLE IF EXISTS organizations;
